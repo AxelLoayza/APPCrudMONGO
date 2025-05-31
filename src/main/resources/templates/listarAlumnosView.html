@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Listado de Alumnos</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Spring Boot</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/listarAlumnos}">Alumnos</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1 class="text-secondary border-bottom border-success" th:text="${titulo}"></h1>
+    <p><a th:href="@{/formAlumno}" class="btn btn-success btn-sm">Agregar Alumno</a></p>
+
+    <table class="table table-striped">
+        <thead class="bg-dark text-white">
+        <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Ciclo</th>
+            <th>Sección</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${alumnos == null or #lists.isEmpty(alumnos)}">
+            <td colspan="8" class="text-center">No hay alumnos registrados</td>
+        </tr>
+        <tr th:each="alumno : ${alumnos}">
+            <td th:text="${alumno.id}"></td>
+            <td th:text="${alumno.codigo}"></td>
+            <td th:text="${alumno.nombre}"></td>
+            <td th:text="${alumno.apellidos}"></td>
+            <td th:text="${alumno.ciclo}"></td>
+            <td th:text="${alumno.seccion}"></td>
+            <td>
+                <a class="btn btn-primary btn-sm" th:href="@{/formAlumno/} + ${alumno.id}">Editar</a>
+            </td>
+            <td>
+                <a class="btn btn-danger btn-sm" th:href="@{/eliminarAlumno/} + ${alumno.id}"
+                   onclick="return confirm('¿Estás seguro que quieres eliminar este alumno?');">
+                    Eliminar
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Formulario Alumno</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Spring Boot</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</nav>
+
+<div class="container mt-4">
+    <h1 th:text="${titulo}" class="text-secondary border-bottom border-success"></h1>
+
+    <div th:object="${alumno}" th:remove="tag">
+        <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+            <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+        </ul>
+    </div>
+
+    <form th:action="@{/formAlumno}" th:object="${alumno}" method="post">
+        <!--
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">id</label>
+        <div class="col-sm-6">
+          <input type="text" th:field="*{id}" class="form-control"
+                 th:errorclass="'form-control alert-danger'" /> <small
+                class="form-text text-danger"
+                th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
+        </div>
+      </div>
+        -->
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Código</label>
+            <div class="col-sm-6">
+                <input type="text" th:field="*{codigo}" class="form-control" th:errorclass="'form-control alert-danger'">
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nombre</label>
+            <div class="col-sm-6">
+                <input type="text" th:field="*{nombre}" class="form-control" th:errorclass="'form-control alert-danger'">
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Apellidos</label>
+            <div class="col-sm-6">
+                <input type="text" th:field="*{apellidos}" class="form-control" th:errorclass="'form-control alert-danger'">
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Ciclo</label>
+            <div class="col-sm-6">
+                <input type="number" th:field="*{ciclo}" class="form-control" th:errorclass="'form-control alert-danger'">
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('ciclo')}" th:errors="*{ciclo}"></small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Sección</label>
+            <div class="col-sm-6">
+                <input type="text" th:field="*{seccion}" class="form-control" th:errorclass="'form-control alert-danger'">
+                <small class="form-text text-danger" th:if="${#fields.hasErrors('seccion')}" th:errors="*{seccion}"></small>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <input type="submit" value="Guardar Alumno" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
