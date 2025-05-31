@@ -71,7 +71,7 @@ public class AlumnoController {
 
     @RequestMapping(value = "/formAlumno")
     public String crear(Map<String, Object> model) {
-        Alumno alumno = new Alumno(); 
+        Alumno alumno = new Alumno();
         model.put("alumno", alumno);
         model.put("titulo", "Nuevo Alumno");
         return "formAlumnoView";

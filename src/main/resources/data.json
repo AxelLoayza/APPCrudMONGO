@@ -1,0 +1,5 @@
+[
+  { "_id": { "$oid": "663b789143ade1b335c73bfc" }, "codigo": "C001", "nombre": "Matemáticas", "creditos": 4 },
+  { "_id": { "$oid": "663b789143ade1b335c73bfd" }, "codigo": "C002", "nombre": "Programación", "creditos": 5 },
+  { "_id": { "$oid": "663b789143ade1b335c73bfe" }, "codigo": "C003", "nombre": "Historia", "creditos": 3 }
+]
